@@ -1,5 +1,9 @@
 package com.shoriext.delivering.service.dto;
 
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 import java.math.BigDecimal;
 
 public final class RestaurantDtos {
@@ -8,16 +12,16 @@ public final class RestaurantDtos {
     }
 
     public record CreateRestaurantCommand(
-            String name,
-            String address,
-            BigDecimal minimumOrderAmount
+            @NotBlank String name,
+            @NotBlank String address,
+            @NotNull @DecimalMin("0.00") BigDecimal minimumOrderAmount
     ) {
     }
 
     public record UpdateRestaurantCommand(
-            String name,
-            String address,
-            BigDecimal minimumOrderAmount,
+            @NotBlank String name,
+            @NotBlank String address,
+            @NotNull @DecimalMin("0.00") BigDecimal minimumOrderAmount,
             boolean active
     ) {
     }

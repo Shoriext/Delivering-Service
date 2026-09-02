@@ -2,6 +2,8 @@ package com.shoriext.delivering.service.dto;
 
 import com.shoriext.delivering.entity.DeliveryStatus;
 import com.shoriext.delivering.entity.OrderStatus;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -12,7 +14,10 @@ public final class OrderDtos {
     private OrderDtos() {
     }
 
-    public record CreateOrderCommand(Long clientId, String deliveryAddress) {
+    public record CreateOrderCommand(@NotNull Long clientId, @NotBlank String deliveryAddress) {
+    }
+
+    public record UpdateOrderStatusCommand(@NotNull OrderStatus status) {
     }
 
     public record OrderItemResponse(
